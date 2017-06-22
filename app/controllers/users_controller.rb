@@ -4,8 +4,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(users_params)
-    
+    @user = User.new(user_params)
+    if @user.save
+      login!
+      redirect_to :somewhere
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :new
+    end
   end
 
 
@@ -14,7 +20,7 @@ class UsersController < ApplicationController
 
 private
 
-  def users_params
+  def user_params
     params.requrie[:user].permit(:email, :password)
   end
 end
