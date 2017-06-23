@@ -1,4 +1,4 @@
-<h1>Albums of <%= @band %></h1>
+<h1>Albums of <%= @band.name %></h1>
 <%= @band.name %> <%= button_to "Edit", edit_band_url, method: :get %>
 <%= button_to "Delete Band", band_url, method: :delete %>
 

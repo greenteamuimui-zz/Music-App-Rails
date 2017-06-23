@@ -25,7 +25,12 @@ class BandsController < ApplicationController
 
   def show
     @band = Band.find_by(id: params[:id])
-    render :show
+    if @band
+      render :show
+    else
+      flash.now[:error] = "Can't find this album"
+      render :index
+    end
   end
 
   def update
